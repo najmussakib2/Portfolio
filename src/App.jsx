@@ -33,10 +33,10 @@ function App() {
                 and contribute to the success of projects that push the boundaries of digital experiences.</p>
             </div>
           </div>
-          <div className="z-10">
+          <div className="z-30">
             <div className="flex justify-center">
               <div className="">
-                <img src={img} alt="avatar" className="max-h-[600px] rounded-lg" />
+                <img src={img} alt="avatar" className="max-h-[600px] rounded-lg " />
               </div>
             </div>
           </div>
@@ -77,7 +77,7 @@ function App() {
                 </>
               ) : serviceTab === 3 ? (
                 <>
-                  
+
                 </>
               ) : <></>
           }
@@ -114,6 +114,20 @@ function App() {
             </a>
           </div>
         </section>
+      </div>
+
+      <div className="bg-[#03191d] flex items-center justify-center min-h-screen">
+        <form className="bg-white rounded-lg flex gap-5 p-10 w-full max-w-[500px]">
+          <div className="space-y-5 w-full">
+            <div><p>Full Name</p><input type="text" className="border-t rounded-md shadow-lg" /></div>
+            <div><p>Phone Number</p><input type="text" className="border-t rounded-md shadow-lg" /></div>
+            <div><p>Email</p><input type="text" className="border-t rounded-md shadow-lg" /></div>
+          </div>
+          <div className="space-y-5 w-full">
+            <div><p>Message</p><textarea className="border-t rounded-md shadow-lg" /></div>
+            <div><input type="submit" className="border rounded-md" /></div>
+          </div>
+        </form>
       </div>
     </>
   );

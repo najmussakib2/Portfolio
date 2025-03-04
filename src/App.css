@@ -9,7 +9,6 @@
   height: 60vh;
   background: #03191d;
   position: relative;
-  overflow: hidden;
 }
 .s-wave {
   position: absolute;
