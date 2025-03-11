@@ -117,17 +117,33 @@ function App() {
       </div>
 
       <div className="bg-[#03191d] flex items-center justify-center min-h-screen">
-        <form className="bg-white rounded-lg flex gap-5 p-10 w-full max-w-[500px]">
-          <div className="space-y-5 w-full">
-            <div><p>Full Name</p><input type="text" className="border-t rounded-md shadow-lg" /></div>
-            <div><p>Phone Number</p><input type="text" className="border-t rounded-md shadow-lg" /></div>
-            <div><p>Email</p><input type="text" className="border-t rounded-md shadow-lg" /></div>
+        <form className="bg-white rounded-lg grid grid-cols-2 p-16 w-full max-w-[50%] gap-x-28">
+          
+          <div className="space-y-10">
+          <p className="text-4xl mb-5 font-bold">Say Hello</p>
+            <div><p>Full Name</p><input type="text" className="border-t rounded-md shadow-lg p-4 w-full" /></div>
+            <div><p>Phone Number</p><input type="text" className="border-t rounded-md shadow-lg p-4 w-full" /></div>
+            <div><p>Email</p><input type="text" className="border-t rounded-md shadow-lg p-4 w-full" /></div>
           </div>
-          <div className="space-y-5 w-full">
-            <div><p>Message</p><textarea className="border-t rounded-md shadow-lg" /></div>
-            <div><input type="submit" className="border rounded-md" /></div>
+          <div>
+            <div><p>Message</p><textarea className="border-t rounded-md shadow-lg p-4 w-full" /></div>
+            <div className="mt-3"><input type="submit" className="border rounded-md p-4" /></div>
+            <div className="bg-green-100 rounded-lg text-green-500 font-semibold">
+              <p></p>
+            </div>
           </div>
         </form>
+      </div>
+
+      <div className="flex flex-col items-center justify-center p-10">
+          <p className="border-b-4 border-yellow-600 text-4xl mb-14">RECENT WORK</p>
+          <div className="grid grid-cols-3">
+            <div className="border text-center">
+              <img src="" alt="" className="h-14 w-14" />
+                <p className="text-xl">Title</p>
+                <p>Details</p>
+            </div>
+          </div>
       </div>
     </>
   );
