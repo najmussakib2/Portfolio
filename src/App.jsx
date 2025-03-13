@@ -1,5 +1,4 @@
 
-import "./app.css";
 import img from "./assets/IMG_34612.png"
 import aboutMe from "./assets/DALL.webp"
 import TabCard from "./TabCard";
