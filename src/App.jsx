@@ -35,11 +35,11 @@ function App() {
         <div className="text-white grid grid-cols-2 gap-10 items-center h-full">
           <motion.div
             initial={{
-              x: -200,
+              x: -100,
               opacity: 0
             }}
             animate={{
-              x: 50,
+              x: 0,
               opacity: "100%"
             }}
             transition={{
@@ -57,11 +57,11 @@ function App() {
           </motion.div>
           <motion.div
             initial={{
-              x: 200,
+              x: 100,
               opacity: 0
             }}
             animate={{
-              x: -50,
+              x: 0,
               opacity: "100%"
             }}
             transition={{
@@ -124,7 +124,7 @@ function App() {
               opacity: 0
             }}
             animate={{
-              x: 30,
+              x: 0,
               opacity: "100%"
             }}
             transition={{
@@ -137,11 +137,11 @@ function App() {
 
         <motion.section
           initial={{
-            x: 200,
+            x: 100,
             opacity: 0
           }}
           animate={{
-            x: 100,
+            x: 0,
             opacity: "100%"
           }}
           transition={{
@@ -200,21 +200,64 @@ function App() {
         </motion.div>
       </div>
 
-      <div className=" flex items-center justify-center min-h-screen">
-        <form className="bg-white rounded-lg grid grid-cols-2 p-16 w-full max-w-[50%] gap-x-28">
-
-          <div className="space-y-10">
-            <p className="text-4xl mb-5 font-bold">Say Hello</p>
-            <div><p>Full Name</p><input type="text" className="border-t rounded-md shadow-lg p-2 w-full" /></div>
-            <div><p>Phone Number</p><input type="text" className="border-t rounded-md shadow-lg p-2 w-full" /></div>
-            <div><p>Email</p><input type="text" className="border-t rounded-md shadow-lg p-2 w-full" /></div>
+      <div className="flex items-center justify-center min-h-screen px-4">
+        <form className="bg-white  rounded-xl shadow-xl grid grid-cols-2 p-12 w-full max-w-[800px] gap-x-10 gap-y-6">
+          <div className="col-span-2 ">
+            <p className="text-4xl font-bold text-black text-center bg-white">Say Hello</p>
           </div>
-          <div>
-            <div><p>Message</p><textarea className="border-t rounded-md shadow-lg p-4 w-full" /></div>
-            <div className="mt-3"><input type="submit" className="border rounded-md p-4" /></div>
-            <div className="bg-green-100 rounded-lg text-green-500 font-semibold">
-              <p></p>
+
+          {/* Left Side - Input Fields */}
+          <div className="space-y-6 bg-white">
+            <div className="bg-white">
+              <p className="text-black font-medium mb-1 bg-white">Full Name</p>
+              <input
+                type="text"
+                className="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-green-500 focus:outline-none"
+                placeholder="Enter your name"
+              />
             </div>
+            <div className="bg-white">
+              <p className="text-black font-medium mb-1 bg-white">Phone Number</p>
+              <input
+                type="text"
+                className="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-green-500 focus:outline-none"
+                placeholder="Enter your phone number"
+              />
+            </div>
+            <div className="bg-white">
+              <p className="text-black font-medium mb-1 bg-white">Email</p>
+              <input
+                type="email"
+                className="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-green-500 focus:outline-none"
+                placeholder="Enter your email"
+              />
+            </div>
+          </div>
+
+          {/* Right Side - Message & Submit */}
+          <div className="flex flex-col justify-between space-y-6 bg-white">
+            <div className="bg-white">
+              <p className="text-black font-medium mb-1 bg-white">Message</p>
+              <textarea
+                className="border border-gray-300 rounded-lg p-3 w-full h-32 resize-none focus:ring-2 focus:ring-green-500 focus:outline-none"
+                placeholder="Write your message here..."
+              />
+            </div>
+            <div className="bg-white">
+              <button
+                type="submit"
+                className="w-full bg-green-500 text-white font-semibold py-3 rounded-lg hover:bg-green-600 transition duration-300"
+              >
+                Send Message
+              </button>
+            </div>
+          </div>
+
+          {/* Success Message Placeholder */}
+          <div className="col-span-2">
+            <p className="bg-green-100 text-green-600 text-center font-medium p-3 rounded-lg hidden">
+              Message sent successfully!
+            </p>
           </div>
         </form>
       </div>
