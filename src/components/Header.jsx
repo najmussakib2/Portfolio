@@ -75,7 +75,7 @@ const Header = () => {
           </ul>
 
           <motion.a
-            href="/resume.pdf"
+            href="https://drive.google.com/file/d/1gr70mrY4hCz-iHxEDY1bHVlaE0UW4ddn/view"
             target="_blank"
             rel="noopener noreferrer"
             className="btn"
