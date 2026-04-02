@@ -8,7 +8,7 @@ interface Post {
   published: boolean; published_at: string | null; created_at: string
 }
 
-const EMPTY = { title: '', slug: '', excerpt: '', content: '', cover_image_url: '', tags: [], published: false }
+const EMPTY = { title: '', slug: '', excerpt: '', content: '', cover_image_url: '', tags: [], published: false } as Omit<Post, 'id' | 'published_at' | 'created_at'>
 
 export default function AdminBlog() {
   const [posts, setPosts] = useState<Post[]>([])
@@ -26,6 +26,7 @@ export default function AdminBlog() {
     })
   }
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { load() }, [])
 
   const autoSlug = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -101,7 +102,7 @@ export default function AdminBlog() {
           ))}
           {posts.length === 0 && (
             <div className="glass-card rounded-2xl p-12 text-center text-[var(--text-secondary)]">
-              No blog posts yet. Click "New Post" to write your first article.
+              No blog posts yet. Click &quot;New Post&quot; to write your first article.
             </div>
           )}
         </div>
