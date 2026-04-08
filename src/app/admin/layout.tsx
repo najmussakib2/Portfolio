@@ -27,7 +27,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <>
-      <div className="min-h-screen flex" style={{ background: 'var(--bg)' }}>
+      <div className="min-h-screen flex" style={{ background: 'var(--bg)', cursor: 'pointer' }}>
 
         {/* Sidebar */}
         <aside className={`fixed inset-y-0 left-0 z-40 w-64 glass-card border-r border-[var(--border)] flex flex-col transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
