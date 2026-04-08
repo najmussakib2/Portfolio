@@ -32,7 +32,6 @@ export default function Contact() {
     setTimeout(() => setStatus('idle'), 4000)
   }
 
-
   return (
     <section id="contact" className="py-28 relative">
       <div className="absolute inset-0 opacity-20"

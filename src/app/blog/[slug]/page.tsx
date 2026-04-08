@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import Navbar from '@/components/sections/Navbar'
 import Footer from '@/components/sections/Footer'
+import Link from 'next/link'
 
 interface Post {
   id: string
@@ -50,7 +51,7 @@ export default function BlogPostPage() {
         <div className="text-center">
           <div className="text-6xl mb-4">📭</div>
           <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">Post not found</h1>
-          <a href="/blog" className="btn-primary">← Back to Blog</a>
+          <Link href="/blog" className="btn-primary">← Back to Blog</Link>
         </div>
       </main>
     </>
@@ -63,10 +64,10 @@ export default function BlogPostPage() {
         <article className="max-w-3xl mx-auto px-6">
 
           {/* Back */}
-          <a href="/blog" className="inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--primary)] transition-colors mb-8 group">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-[var(--text-secondary)] hover:text-[var(--primary)] transition-colors mb-8 group">
             <span className="group-hover:-translate-x-1 transition-transform">←</span>
             Back to Blog
-          </a>
+          </Link>
 
           {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-4">
