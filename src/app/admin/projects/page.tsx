@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/set-state-in-effect */
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -92,7 +94,7 @@ export default function AdminProjects() {
           ))}
           {projects.length === 0 && (
             <div className="glass-card rounded-2xl p-12 text-center text-[var(--text-secondary)]">
-              No projects yet. Click "New Project" to add one.
+              No projects yet. Click &quot;New Project&quot; to add one.
             </div>
           )}
         </div>

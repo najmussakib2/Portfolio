@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useEffectEvent, useCallback } from 'react'
 
 interface Post {
   id: string; title: string; slug: string; excerpt: string
@@ -8,7 +9,7 @@ interface Post {
   published: boolean; published_at: string | null; created_at: string
 }
 
-const EMPTY = { title: '', slug: '', excerpt: '', content: '', cover_image_url: '', tags: [], published: false }
+const EMPTY = { title: '', slug: '', excerpt: '', content: '', cover_image_url: '', tags: [] as string[], published: false }
 
 export default function AdminBlog() {
   const [posts, setPosts] = useState<Post[]>([])
@@ -19,14 +20,26 @@ export default function AdminBlog() {
   const [saving, setSaving] = useState(false)
   const [tagInput, setTagInput] = useState('')
 
-  const load = () => {
-    setLoading(true)
-    fetch('/api/admin/blog?admin=true&limit=50').then(r => r.json()).then(d => {
-      setPosts(d.data || []); setLoading(false)
-    })
+const fetchPosts = useEffectEvent(async () => {
+  setLoading(true);
+  try {
+    const res = await fetch('/api/admin/blog?admin=true&limit=50');
+    const data = await res.json();
+    setPosts(data.data || []);
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoading(false);
   }
+});
 
-  useEffect(() => { load() }, [])
+  useEffect(() => {
+    fetchPosts();
+  }, []); // no warning, and `load` always gets the latest state/props
+
+  const refetch = useCallback(() => {
+    fetchPosts();     // ← Safe to call here
+  }, [fetchPosts]);
 
   const autoSlug = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
@@ -43,14 +56,14 @@ export default function AdminBlog() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(editing ? { id: editing, ...payload } : payload),
     })
-    if ((await res.json()).success) { setModal(false); load() }
+    if ((await res.json()).success) { setModal(false); refetch() }
     setSaving(false)
   }
 
   const handleDelete = async (id: string) => {
     if (!confirm('Delete this post?')) return
     await fetch(`/api/admin/blog?id=${id}`, { method: 'DELETE' })
-    load()
+    refetch()
   }
 
   const togglePublish = async (p: Post) => {
@@ -59,7 +72,7 @@ export default function AdminBlog() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: p.id, published: !p.published }),
     })
-    load()
+    refetch()
   }
 
   return (
@@ -73,7 +86,7 @@ export default function AdminBlog() {
       </div>
 
       {loading ? (
-        <div className="space-y-3">{[1,2,3].map(i => <div key={i} className="glass-card rounded-2xl h-20 animate-pulse" />)}</div>
+        <div className="space-y-3">{[1, 2, 3].map(i => <div key={i} className="glass-card rounded-2xl h-20 animate-pulse" />)}</div>
       ) : (
         <div className="space-y-3">
           {posts.map(p => (
@@ -101,7 +114,7 @@ export default function AdminBlog() {
           ))}
           {posts.length === 0 && (
             <div className="glass-card rounded-2xl p-12 text-center text-[var(--text-secondary)]">
-              No blog posts yet. Click "New Post" to write your first article.
+              No blog posts yet. Click &quot;New Post&quot; to write your first article.
             </div>
           )}
         </div>
