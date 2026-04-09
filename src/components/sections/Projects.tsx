@@ -22,28 +22,17 @@ export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([])
   const [filter, setFilter] = useState('all')
   const [loading, setLoading] = useState(true)
-  const [moreThanSix, setIsMoreThenSix] = useState(false)
   const [mouse, setMouse] = useState<{ [key: string]: { x: number; y: number } }>({})
 
   useEffect(() => {
-    fetch('/api/admin/projects')
+    fetch('/api/admin/projects?featured=true&limit=6')
       .then(r => r.json())
       .then(d => {
-        const allProjects = d.data || [];
-
-        // Only show maximum 6 projects
-        const displayedProjects = allProjects.slice(0, 6);
-
-        setProjects(displayedProjects);
-
-        // Check if there are more than 6 projects in total
-        setIsMoreThenSix(allProjects.length > 6);
-
+        setProjects(d.data || []);
         setLoading(false);
       })
       .catch(() => {
         setProjects([]);
-        setIsMoreThenSix(false);
         setLoading(false);
       });
   }, []);
@@ -188,7 +177,6 @@ export default function Projects() {
           </div>
         )}
 
-        {moreThanSix?
           <Reveal className="text-center mt-10">
           <Link href="/projects" data-hover className="btn-outline">
             View All Projects
@@ -196,7 +184,7 @@ export default function Projects() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
-        </Reveal>:<></>}
+        </Reveal>
       </div>
     </section>
   )

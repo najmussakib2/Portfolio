@@ -9,11 +9,14 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const category = searchParams.get('category')
     const featuredOnly = searchParams.get('featured') === 'true'
+    const limit = parseInt(searchParams.get('limit') || '1000')
+    const offset = parseInt(searchParams.get('offset') || '0')
 
     let query = supabase
       .from('projects')
       .select('*')
-      .order('order_index', { ascending: true })
+      .order('created_at', { ascending: false })
+      .range(offset, offset + limit - 1)
 
     if (category) query = query.eq('category', category)
     if (featuredOnly) query = query.eq('featured', true)
