@@ -25,7 +25,7 @@ export default function Projects() {
   const [mouse, setMouse] = useState<{ [key: string]: { x: number; y: number } }>({})
 
   useEffect(() => {
-    fetch('/api/admin/projects?featured=true&limit=6')
+    fetch('/api/admin/projects?featured=true&limit=9')
       .then(r => r.json())
       .then(d => {
         setProjects(d.data || []);
@@ -192,6 +192,8 @@ export default function Projects() {
 
 const PLACEHOLDER_PROJECTS: Project[] = [
   { id: '1', title: 'Portfolio CMS', description: 'A full-featured portfolio with admin dashboard, analytics, and blog system built with Next.js and Supabase.', tech_stack: ['Next.js', 'Supabase', 'TypeScript', 'Tailwind'], github_url: '#', live_url: '#', image_url: null, category: 'fullstack', featured: true },
+
   { id: '2', title: 'E-Commerce Platform', description: 'Full-stack e-commerce solution with cart, payments, and real-time inventory management.', tech_stack: ['React', 'Node.js', 'MongoDB', 'Stripe'], github_url: '#', live_url: '#', image_url: null, category: 'fullstack', featured: false },
+  
   { id: '3', title: 'Task Manager API', description: 'RESTful API for task and project management with role-based access control and JWT auth.', tech_stack: ['Node.js', 'PostgreSQL', 'JWT', 'Docker'], github_url: '#', live_url: null, image_url: null, category: 'backend', featured: false },
 ]
